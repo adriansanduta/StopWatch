@@ -1,6 +1,6 @@
-const timerMilliseconds = document.querySelector('.timer-milliseconds');
-const timerSeconds = document.querySelector('.timer-seconds');
-const timerMinutes = document.querySelector('.timer-minutes');  
+const timerMilliseconds = document.querySelector('.timer__milliseconds');
+const timerSeconds = document.querySelector('.timer__seconds');
+const timerMinutes = document.querySelector('.timer__minutes');  
 
 let cancelID;
 let startTime;
@@ -8,7 +8,7 @@ let startTime;
 
 function startTimer() {
   startTime = Date.now();
- let cancelID = requestAnimationFrame(updateTimer);
+ cancelID = requestAnimationFrame(updateTimer);
 }
 
 function stopTimer() {
@@ -21,5 +21,11 @@ function resetTimer() {
 
 function updateTimer() {
    let millisElapsed = (Date.now() - startTime);
-   cancelId = requestAnimationFrame(updateTimer);
+   let secondsElapsed = millisElapsed / 1000;
+   let minutesElapsed = secondsElapsed / 60;
+
+   timerMilliseconds.innerHTML = millisElapsed % 1000;
+   timerSeconds.innerHTML = Math.floor(secondsElapsed % 60);
+   timerMinutes.innerHTML = Math.floor(minutesElapsed);
+   cancelID = requestAnimationFrame(updateTimer);
 }
