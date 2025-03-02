@@ -25,13 +25,21 @@ function updateTimer() {
    let minutesElapsed = secondsElapsed / 60;
 
    let minutesText = Math.floor(minutesElapsed);
+   let secondsText = Math.floor(secondsElapsed % 60);
+   let millisText = millisElapsed % 1000;
 
    if (minutesText.toString().length === 1) {
       minutesText = '0' + minutesText;
    }
+   if (secondsText.toString().length === 1) {
+      secondsText = '0' + secondsText;
+   }
+    if (millisText.toString().length < 3) {
+        millisText = millisText.toString().padStart(3, '0');
+    }
 
-   timerMilliseconds.innerHTML = millisElapsed % 1000;
-   timerSeconds.innerHTML = Math.floor(secondsElapsed % 60);
+   timerMilliseconds.innerHTML = millisText;
+   timerSeconds.innerHTML = secondsText;
    timerMinutes.innerHTML = minutesText;
    cancelID = requestAnimationFrame(updateTimer);
 }
