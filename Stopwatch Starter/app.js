@@ -1,5 +1,13 @@
+const timerMilliseconds = document.querySelector('.timer-milliseconds');
+const timerSeconds = document.querySelector('.timer-seconds');
+const timerMinutes = document.querySelector('.timer-minutes');  
+
+let cancelID;
+let startTime;
+
+
 function startTimer() {
-  let startTime = Date.now();
+  startTime = Date.now();
  let cancelID = requestAnimationFrame(updateTimer);
 }
 
@@ -12,5 +20,6 @@ function resetTimer() {
 }
 
 function updateTimer() {
-    requestAnimationFrame(updateTimer);
+   let millisElapsed = (Date.now() - startTime);
+   cancelId = requestAnimationFrame(updateTimer);
 }
