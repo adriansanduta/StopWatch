@@ -24,8 +24,14 @@ function updateTimer() {
    let secondsElapsed = millisElapsed / 1000;
    let minutesElapsed = secondsElapsed / 60;
 
+   let minutesText = Math.floor(minutesElapsed);
+
+   if (minutesText.toString().length === 1) {
+      minutesText = '0' + minutesText;
+   }
+
    timerMilliseconds.innerHTML = millisElapsed % 1000;
    timerSeconds.innerHTML = Math.floor(secondsElapsed % 60);
-   timerMinutes.innerHTML = Math.floor(minutesElapsed);
+   timerMinutes.innerHTML = minutesText;
    cancelID = requestAnimationFrame(updateTimer);
 }
